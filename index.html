@@ -1,22 +1,21 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="en" class="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Norris Bar — Portfolio</title>
+  <meta name="description" content="Portfolio of Norris Bar, Computer Engineering student.">
+  <meta name="author" content="Norris Bar">
 
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
-          colors: {
-            nebula: {
-              900: '#0c0018',
-              800: '#1a0730'
-            }
+          fontFamily: {
+            sans: ['system-ui', 'ui-sans-serif', 'SF Pro Text', 'sans-serif'],
           }
         }
       }
@@ -24,364 +23,505 @@
   </script>
 
   <style>
-    html {
-      scroll-behavior: smooth;
+    html { scroll-behavior: smooth; }
+
+    /* Background gradients */
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(168,85,247,0.20), transparent 55%),
+        radial-gradient(circle at 90% 80%, rgba(59,130,246,0.18), transparent 55%),
+        linear-gradient(145deg, #020617, #1e1b4b 55%, #4c1d95);
     }
+    .light body {
+      background:
+        radial-gradient(circle at 0% 0%, rgba(129,140,248,0.24), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(236,72,153,0.16), transparent 55%),
+        linear-gradient(145deg, #eef2ff, #ede9fe);
+    }
+
+    .glass {
+      background: rgba(15,23,42,0.85);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(148,163,184,0.35);
+    }
+    .light .glass {
+      background: rgba(255,255,255,0.85);
+      border-color: rgba(148,163,184,0.5);
+    }
+
+    /* Smooth hover / animation */
+    .hover-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .hover-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 45px rgba(15,23,42,0.55);
+      border-color: rgba(167,139,250,0.8);
+    }
+
+    .hover-btn {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .hover-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(129,140,248,0.65);
+    }
+
+    .hover-underline { position: relative; }
+    .hover-underline::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -3px;
+      width: 0; height: 2px;
+      background: linear-gradient(to right, #a855f7, #6366f1);
+      transition: width 0.25s ease;
+    }
+    .hover-underline:hover::after { width: 100%; }
 
     .fade-in {
       opacity: 0;
       transform: translateY(16px);
-      transition: opacity .7s ease, transform .7s ease;
+      transition: opacity 600ms ease, transform 600ms ease;
     }
-
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .hover-card {
-      transition: all .35s ease;
-      backdrop-filter: blur(12px);
+    /* Icons / social */
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      border: 1px solid rgba(199,210,254,0.5);
+      color: #e5e7eb;
+      background: radial-gradient(circle at 0% 0%, rgba(129,140,248,0.35), rgba(30,64,175,0.7));
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+    .social-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(129,140,248,0.8);
+      border-color: rgba(216,180,254,0.9);
+      background: radial-gradient(circle at 0% 0%, rgba(168,85,247,0.55), rgba(37,99,235,0.9));
+    }
+    .light .social-link {
+      color: #111827;
+      background: rgba(224,231,255,0.9);
+      border-color: rgba(165,180,252,0.9);
     }
 
-    .hover-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
-      border-color: rgba(200, 150, 255, 0.5);
-    }
+    /* Inputs text color */
+    input, textarea { color: #e5e7eb; }
+    .light input, .light textarea { color: #1e293b; }
 
-    .hover-btn {
-      transition: all .25s ease;
-    }
-
-    .hover-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(180, 100, 255, 0.4);
-    }
-
-    .hover-img {
-      transition: transform .45s ease, filter .45s ease;
-    }
-
-    .hover-img:hover {
-      transform: scale(1.04);
-      filter: brightness(1.15);
-    }
-
-    .hover-underline {
-      position: relative;
-    }
-
-    .hover-underline::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -3px;
-      height: 2px;
-      width: 0;
-      background: linear-gradient(to right, #c084fc, #818cf8);
-      transition: width .3s ease;
-    }
-
-    .hover-underline:hover::after {
-      width: 100%;
-    }
-
-    .active-nav {
-      border-bottom: 3px solid #c084fc;
+    /* Focus ring */
+    .focus-ring:focus {
+      outline: 2px solid transparent;
+      box-shadow: 0 0 0 3px rgba(129,140,248,0.6);
     }
   </style>
 </head>
 
-<body
-  class="dark bg-gradient-to-br from-nebula-900 via-purple-900 to-fuchsia-900 text-slate-100 min-h-screen">
+<body class="text-slate-100 font-sans antialiased">
 
   <!-- HEADER -->
-  <header class="sticky top-0 bg-slate-950/80 backdrop-blur-xl border-b border-purple-800 z-50">
-    <div class="max-w-6xl mx-auto px-4">
+  <header class="sticky top-0 z-40 border-b border-slate-800/70 bg-slate-950/70 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <nav class="flex items-center justify-between h-16">
-
         <a href="#home" class="flex items-center gap-3">
-          <div
-            class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 via-fuchsia-500 to-indigo-600 flex items-center justify-center text-white font-bold">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 via-violet-500 to-indigo-500 flex items-center justify-center text-white font-semibold shadow-lg">
             NB
           </div>
           <div class="hidden sm:block">
-            <p class="font-semibold text-lg">Norris Bar</p>
-            <p class="text-xs text-purple-300">Computer Engineering Student</p>
+            <div class="text-sm font-semibold tracking-wide text-slate-100">Norris Bar</div>
+            <div class="text-[11px] text-slate-300">B.Tech Computer Engineering</div>
           </div>
         </a>
 
         <ul class="hidden md:flex items-center gap-6 text-sm">
-          <li><a href="#home" class="nav-link hover-underline">Home</a></li>
-          <li><a href="#about" class="nav-link hover-underline">About</a></li>
-          <li><a href="#academics" class="nav-link hover-underline">Academics</a></li>
-          <li><a href="#projects" class="nav-link hover-underline">Projects</a></li>
-          <li><a href="#achievements" class="nav-link hover-underline">Achievements</a></li>
-          <li><a href="#contact" class="nav-link hover-underline">Contact</a></li>
+          <li><a href="#home" class="hover-underline text-slate-200">Home</a></li>
+          <li><a href="#about" class="hover-underline text-slate-300">About</a></li>
+          <li><a href="#academics" class="hover-underline text-slate-300">Academics</a></li>
+          <li><a href="#projects" class="hover-underline text-slate-300">Projects</a></li>
+          <li><a href="#contact" class="hover-underline text-slate-300">Contact</a></li>
         </ul>
 
-        <!-- theme toggle -->
-        <button id="themeToggle"
-          class="p-2 rounded-lg border border-purple-500/40 hover:bg-slate-800">
-          🌙
-        </button>
+        <div class="flex items-center gap-3">
+          <!-- Theme toggle -->
+          <button id="themeToggle" class="p-2 rounded-lg border border-violet-500/60 bg-slate-900/70 hover:bg-slate-800/90 focus-ring" aria-label="Toggle dark mode">
+            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-300 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+            </svg>
+            <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-violet-300" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+          </button>
 
+          <!-- Mobile menu button -->
+          <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-slate-800 focus-ring" aria-label="Toggle menu">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-100" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
       </nav>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-800 bg-slate-950/95">
+      <div class="px-4 pb-4 flex flex-col gap-2 text-sm text-slate-100">
+        <a class="py-2" href="#home">Home</a>
+        <a class="py-2" href="#about">About</a>
+        <a class="py-2" href="#academics">Academics</a>
+        <a class="py-2" href="#projects">Projects</a>
+        <a class="py-2" href="#contact">Contact</a>
+      </div>
     </div>
   </header>
 
   <!-- MAIN -->
-  <main class="max-w-6xl mx-auto px-4 py-16 space-y-24">
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10 space-y-20">
 
     <!-- HERO -->
-    <section id="home" class="fade-in flex flex-col md:flex-row items-center gap-12">
-      <div class="w-full md:w-1/2">
-        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
-          Hi, I'm <span
-            class="bg-clip-text text-transparent bg-gradient-to-r from-purple-300 via-fuchsia-200 to-indigo-200">Norris
-            Bar</span>
+    <section id="home" class="fade-in flex flex-col md:flex-row items-center gap-10 pt-4">
+      <div class="md:w-1/2 space-y-5">
+        <p class="text-xs tracking-[0.2em] uppercase text-violet-300/90">Portfolio</p>
+        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight text-slate-50">
+          Hi, I'm <span class="bg-gradient-to-r from-fuchsia-400 via-violet-400 to-indigo-400 bg-clip-text text-transparent">Norris Bar</span>
         </h1>
-        <p class="mt-4 text-slate-200/90">
-          A Computer Engineering student from Vasai, passionate about Python, logic building and
-          practical projects.
+        <p class="text-sm sm:text-base text-slate-300/90">
+          I’m from Vasai and currently pursuing my Bachelor of Technology degree in
+          <span class="font-semibold text-violet-200">Computer Engineering</span> at
+          Fr. Conceicao Rodrigues College of Engineering. I enjoy learning new technologies and building clean, functional solutions.
         </p>
+        <div class="flex flex-wrap gap-3 text-xs text-slate-200/90">
+          <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-violet-500/50">Python Projects</span>
+          <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-indigo-500/50">Web Basics</span>
+          <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-fuchsia-500/50">Problem Solving</span>
+        </div>
 
-        <div class="mt-6 flex gap-3">
-          <a href="#contact"
-            class="hover-btn bg-gradient-to-r from-purple-600 to-fuchsia-600 px-4 py-2 rounded-lg">Contact
-            Me</a>
-          <a href="#projects" class="hover-btn border border-purple-400/60 px-4 py-2 rounded-lg">My
-            Projects</a>
+        <div class="flex flex-wrap gap-4 pt-2">
+          <a href="#contact" class="hover-btn inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 text-white shadow-lg">
+            Contact Me
+          </a>
+          <a href="#projects" class="hover-btn inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium border border-slate-500/70 bg-slate-900/60 text-slate-100">
+            View Python Projects
+          </a>
         </div>
       </div>
 
-      <div class="w-full md:w-1/2">
-        <div
-          class="relative rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)] border border-purple-500/40">
-          <img src="WhatsApp Image 2025-11-05 at 21.34.19 (1).jpeg" alt="Norris Bar"
-            class="hover-img w-full h-full object-cover">
+      <div class="md:w-1/2">
+        <div class="glass hover-card rounded-3xl p-3 sm:p-4 shadow-2xl flex flex-col items-center border border-slate-700/70">
+          <div class="relative w-full aspect-[4/5] overflow-hidden rounded-2xl">
+            <img src="IMG_20250714_180734_864.webp" alt="Norris Bar on a bench" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/10 to-transparent"></div>
+          </div>
+          <div class="w-full mt-4 flex items-center justify-between text-xs text-slate-200">
+            <div>
+              <p class="font-semibold text-sm">Norris Bar</p>
+              <p class="text-slate-400">B.Tech Computer Engineering</p>
+            </div>
+            <div class="text-right text-slate-400">
+              <p>Vasai, Maharashtra</p>
+              <p class="text-violet-300 font-medium">Aspiring Developer</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ABOUT -->
     <section id="about" class="fade-in">
-      <h2 class="text-3xl font-semibold">About Me</h2>
+      <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-4">About Me</h2>
+        <p class="text-sm sm:text-base text-slate-300/95 leading-relaxed">
+          I’m a Computer Engineering student who enjoys understanding how things work and building projects step by step.
+          I’m exploring programming, especially <span class="font-semibold text-violet-200">Python</span>, and learning the basics of web development and other core subjects.
+        </p>
+        <p class="mt-3 text-sm sm:text-base text-slate-300/95">
+          I like to keep my work organised, readable, and easy to understand. My goal is to keep improving my skills and build a strong foundation for future opportunities in software and related fields.
+        </p>
 
-      <p class="mt-4 text-slate-200/90">
-        I'm Norris Bar, pursuing B.Tech in Computer Engineering at Fr. Conceicao Rodrigues College
-        of Engineering.
-      </p>
-
-      <p class="mt-3 text-slate-300">
-        I love building small Python programs and improving my logic and problem-solving skills.
-      </p>
-
-      <!-- SOCIAL LINKS -->
-      <div class="mt-6 flex flex-wrap gap-4 text-sm">
-
-        <a href="https://www.instagram.com/norris.bar_03/" target="_blank"
-          class="px-3 py-1 bg-purple-700/40 rounded-lg border border-purple-400/40 hover:bg-purple-700/60">Instagram</a>
-
-        <a href="https://x.com/BarNorris03" target="_blank"
-          class="px-3 py-1 bg-purple-700/40 rounded-lg border border-purple-400/40 hover:bg-purple-700/60">X
-          (Twitter)</a>
-
-        <a href="https://www.linkedin.com/in/norris-bar-2a3127379/" target="_blank"
-          class="px-3 py-1 bg-purple-700/40 rounded-lg border border-purple-400/40 hover:bg-purple-700/60">LinkedIn</a>
-
-        <a href="https://github.com/spectre-07" target="_blank"
-          class="px-3 py-1 bg-purple-700/40 rounded-lg border border-purple-400/40 hover:bg-purple-700/60">GitHub</a>
-
-        <a href="mailto:barnorris2007@gmail.com"
-          class="px-3 py-1 bg-purple-700/40 rounded-lg border border-purple-400/40 hover:bg-purple-700/60">Email</a>
-
+        <h3 class="mt-6 text-sm font-semibold tracking-wide text-violet-300 uppercase">Skills (Growing)</h3>
+        <div class="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs sm:text-sm text-slate-200">
+          <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">Python (Beginner–Intermediate)</span>
+          <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">C Basics</span>
+          <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">HTML & CSS Basics</span>
+          <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">Problem Solving</span>
+          <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">Team Collaboration</span>
+          <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">Communication</span>
+        </div>
       </div>
     </section>
 
     <!-- ACADEMICS -->
     <section id="academics" class="fade-in">
-      <h2 class="text-3xl font-semibold">Academic Background</h2>
-
-      <div class="mt-6 grid md:grid-cols-3 gap-6">
-
-        <div class="hover-card bg-slate-900/40 border border-purple-700 p-6 rounded-xl">
-          <h3 class="text-purple-300 font-semibold">10th Grade</h3>
-          <p class="mt-2">Convent of Jesus & Mary High School</p>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="glass rounded-3xl p-6 sm:p-7 hover-card">
+          <h2 class="text-2xl font-semibold text-slate-50 mb-4">Academic Journey</h2>
+          <ul class="space-y-3 text-sm sm:text-base text-slate-200">
+            <li>
+              <span class="font-semibold text-violet-200">10th Grade</span><br>
+              Convent of Jesus and Mary High School
+            </li>
+            <li>
+              <span class="font-semibold text-violet-200">12th Grade</span><br>
+              Thomas Baptista Junior College
+            </li>
+            <li>
+              <span class="font-semibold text-violet-200">B.Tech in Computer Engineering</span><br>
+              Fr. Conceicao Rodrigues College of Engineering (Currently pursuing)
+            </li>
+          </ul>
         </div>
 
-        <div class="hover-card bg-slate-900/40 border border-purple-700 p-6 rounded-xl">
-          <h3 class="text-purple-300 font-semibold">12th Grade</h3>
-          <p class="mt-2">Thomas Baptista Junior College</p>
-        </div>
+        <div class="flex flex-col gap-6">
+          <div class="glass rounded-3xl p-6 hover-card">
+            <h3 class="text-lg font-semibold text-slate-50 mb-2">Achievements</h3>
+            <p class="text-sm text-slate-300/90 italic">
+              Coming soon — this space will be updated as I participate in events, projects, and competitions.
+            </p>
+          </div>
 
-        <div class="hover-card bg-slate-900/40 border border-purple-700 p-6 rounded-xl">
-          <h3 class="text-purple-300 font-semibold">B.Tech (Current)</h3>
-          <p class="mt-2">Computer Engineering — Fr. C.R.C.E</p>
+          <div class="glass rounded-3xl p-6 hover-card">
+            <h3 class="text-lg font-semibold text-slate-50 mb-2">Courses & Learning</h3>
+            <ul class="list-disc list-inside text-sm text-slate-200 space-y-1">
+              <li>Python programming (multiple beginner to intermediate level projects)</li>
+              <li>Introductory C programming & problem solving</li>
+              <li>Basics of HTML & CSS</li>
+              <li>Foundations of Computer Engineering subjects (in progress)</li>
+            </ul>
+          </div>
         </div>
-
       </div>
     </section>
 
     <!-- PROJECTS -->
     <section id="projects" class="fade-in">
-      <h2 class="text-3xl font-semibold">Python Projects</h2>
-      <p class="text-slate-300 mt-2">Approximately 5 Python based projects completed.</p>
-
-      <div class="mt-8 grid md:grid-cols-3 gap-6">
-
-        <div class="hover-card bg-slate-900/40 border border-purple-700 p-6 rounded-xl">
-          <h3 class="text-purple-300 font-semibold">Automation Scripts</h3>
-          <p class="mt-2 text-slate-300 text-sm">Simple automation tasks using Python.</p>
+      <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-4">Python Projects</h2>
+        <p class="text-sm sm:text-base text-slate-300/95 mb-4">
+          I’ve completed around <span class="font-semibold text-violet-200">five projects in Python</span> that helped me practise logic, loops, functions, and basic data structures.
+        </p>
+        <div class="grid md:grid-cols-2 gap-4 text-sm text-slate-200">
+          <div class="border border-slate-700/80 rounded-2xl p-4 bg-slate-950/60">
+            <h3 class="font-semibold text-violet-200 mb-1">Small Utility Programs</h3>
+            <p>Mini tools like calculators, converters, and pattern generators to understand control flow and functions.</p>
+          </div>
+          <div class="border border-slate-700/80 rounded-2xl p-4 bg-slate-950/60">
+            <h3 class="font-semibold text-violet-200 mb-1">Practice Problems</h3>
+            <p>Programs focused on loops, lists, and simple logic to build confidence in problem solving.</p>
+          </div>
+          <div class="border border-slate-700/80 rounded-2xl p-4 bg-slate-950/60">
+            <h3 class="font-semibold text-violet-200 mb-1">File & String Tasks</h3>
+            <p>Experiments with basic file handling and string operations to understand how Python manages data.</p>
+          </div>
+          <div class="border border-slate-700/80 rounded-2xl p-4 bg-slate-950/60">
+            <h3 class="font-semibold text-violet-200 mb-1">More Coming Soon</h3>
+            <p>I plan to move towards slightly bigger projects like small web apps or automation scripts.</p>
+          </div>
         </div>
-
-        <div class="hover-card bg-slate-900/40 border border-purple-700 p-6 rounded-xl">
-          <h3 class="text-purple-300 font-semibold">Console Applications</h3>
-          <p class="mt-2 text-slate-300 text-sm">Mini console programs for practice.</p>
-        </div>
-
-        <div class="hover-card bg-slate-900/40 border border-purple-700 p-6 rounded-xl">
-          <h3 class="text-purple-300 font-semibold">Practice Projects</h3>
-          <p class="mt-2 text-slate-300 text-sm">Basic programs created for learning.</p>
-        </div>
-
       </div>
     </section>
 
-    <!-- ACHIEVEMENTS -->
-    <section id="achievements" class="fade-in">
-      <h2 class="text-3xl font-semibold">Achievements</h2>
-      <div
-        class="mt-4 bg-slate-900/40 border border-purple-700 p-6 rounded-xl text-slate-400 italic">
-        Achievements will be added soon.
+    <!-- GALLERY (placeholder) -->
+    <section class="fade-in">
+      <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-3">Gallery</h2>
+        <p class="text-sm sm:text-base text-slate-300/90">
+          This section will showcase screenshots, photos from events, and project visuals in the future.
+        </p>
+      </div>
+    </section>
+
+    <!-- SOCIALS -->
+    <section class="fade-in">
+      <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-4">Connect With Me</h2>
+        <p class="text-sm sm:text-base text-slate-300/95 mb-4">
+          You can reach me through email or any of these platforms.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="mailto:barnorris2007@gmail.com" class="social-link">
+            <span>📧</span><span>Email</span>
+          </a>
+          <a href="https://www.instagram.com/norris.bar_03/" target="_blank" class="social-link">
+            <span>📸</span><span>Instagram</span>
+          </a>
+          <a href="https://x.com/BarNorris03" target="_blank" class="social-link">
+            <span>🐦</span><span>X (Twitter)</span>
+          </a>
+          <a href="https://www.linkedin.com/in/norris-bar-2a3127379/" target="_blank" class="social-link">
+            <span>💼</span><span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/spectre-07" target="_blank" class="social-link">
+            <span>💻</span><span>GitHub</span>
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="fade-in">
-      <h2 class="text-3xl font-semibold">Contact Me</h2>
+    <section id="contact" class="fade-in mb-8">
+      <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-2">Contact Me</h2>
+        <p class="text-sm sm:text-base text-slate-300/95 mb-4">
+          The best way to reach me is via email or LinkedIn. You can also use this simple contact form.
+        </p>
 
-      <form id="contactForm"
-        class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-900/40 border border-purple-700 p-6 rounded-xl">
+        <form id="contactForm" class="grid grid-cols-1 md:grid-cols-2 gap-4" novalidate>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-medium text-slate-200">Name</label>
+            <input id="name" type="text" required
+                   class="focus-ring text-sm rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2"
+                   placeholder="Your name">
+            <p id="nameErr" class="hidden text-xs text-rose-400">Please enter your name.</p>
+          </div>
 
-        <div>
-          <label class="text-sm">Name</label>
-          <input id="name" class="mt-1 w-full p-2 rounded bg-slate-950 border border-purple-700"
-            placeholder="Your name">
-          <p id="nameErr" class="text-red-400 text-xs hidden">Please enter your name.</p>
-        </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-medium text-slate-200">Email</label>
+            <input id="email" type="email" required
+                   class="focus-ring text-sm rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2"
+                   placeholder="you@example.com">
+            <p id="emailErr" class="hidden text-xs text-rose-400">Enter a valid email address.</p>
+          </div>
 
-        <div>
-          <label class="text-sm">Email</label>
-          <input id="email" type="email"
-            class="mt-1 w-full p-2 rounded bg-slate-950 border border-purple-700"
-            placeholder="you@example.com">
-          <p id="emailErr" class="text-red-400 text-xs hidden">Enter a valid email address.</p>
-        </div>
+          <div class="md:col-span-2 flex flex-col gap-1">
+            <label class="text-xs font-medium text-slate-200">Message</label>
+            <textarea id="message" rows="5" required
+                      class="focus-ring text-sm rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2"
+                      placeholder="Write at least 10 characters here..."></textarea>
+            <p id="msgErr" class="hidden text-xs text-rose-400">Please enter a message (min 10 characters).</p>
+          </div>
 
-        <div class="md:col-span-2">
-          <label class="text-sm">Message</label>
-          <textarea id="message" rows="5"
-            class="mt-1 w-full p-2 rounded bg-slate-950 border border-purple-700"
-            placeholder="Your message"></textarea>
-          <p id="msgErr" class="text-red-400 text-xs hidden">Message must be at least 10
-            characters.</p>
-        </div>
-
-        <button
-          class="hover-btn bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-600 text-white px-4 py-2 rounded-lg">
-          Send Message (Demo)
-        </button>
-
-        <p id="formMsg" class="text-sm text-slate-300 mt-2"></p>
-
-      </form>
+          <div class="md:col-span-2 flex flex-wrap items-center gap-3 pt-2">
+            <button type="submit"
+                    class="hover-btn inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 text-white shadow-lg">
+              Send message
+            </button>
+            <div id="formMsg" class="text-xs sm:text-sm text-slate-200"></div>
+          </div>
+        </form>
+      </div>
     </section>
 
   </main>
 
   <!-- FOOTER -->
-  <footer class="text-center py-8 text-sm text-slate-300 border-t border-purple-800 mt-20">
-
-    <p class="mb-4 text-purple-300">Connect with me</p>
-
-    <div class="flex justify-center gap-4 mb-4 text-sm">
-
-      <a href="https://www.instagram.com/norris.bar_03/" target="_blank"
-        class="hover:text-purple-300">Instagram</a>
-
-      <a href="https://x.com/BarNorris03" target="_blank"
-        class="hover:text-purple-300">X</a>
-
-      <a href="https://www.linkedin.com/in/norris-bar-2a3127379/" target="_blank"
-        class="hover:text-purple-300">LinkedIn</a>
-
-      <a href="https://github.com/spectre-07" target="_blank"
-        class="hover:text-purple-300">GitHub</a>
-
-      <a href="mailto:barnorris2007@gmail.com" class="hover:text-purple-300">Email</a>
-
+  <footer class="border-t border-slate-800 bg-slate-950/90">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm text-slate-400">
+      <div>© <span id="year"></span> Norris Bar. All rights reserved.</div>
+      <div class="flex flex-wrap gap-3">
+        <span class="text-slate-500">Email:</span>
+        <a href="mailto:barnorris2007@gmail.com" class="hover-underline text-slate-200">barnorris2007@gmail.com</a>
+      </div>
     </div>
-
-    <p>© <span id="year"></span> Norris Bar</p>
   </footer>
 
-  <!-- SCRIPT -->
+  <!-- SCRIPTS -->
   <script>
-    // theme toggle
-    const toggle = document.getElementById("themeToggle");
-    toggle.addEventListener("click", () => {
-      document.documentElement.classList.toggle("dark");
-    });
+    // Helper
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
-    // fade in
-    window.addEventListener("load", () => {
-      document.querySelectorAll(".fade-in").forEach(el =>
-        setTimeout(() => el.classList.add("visible"), 150)
-      );
-    });
+    // THEME TOGGLE
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
 
-    // contact form validation
-    const form = document.getElementById("contactForm");
-    const n = document.getElementById("name");
-    const e = document.getElementById("email");
-    const m = document.getElementById("message");
-    const ne = document.getElementById("nameErr");
-    const ee = document.getElementById("emailErr");
-    const me = document.getElementById("msgErr");
-    const fm = document.getElementById("formMsg");
-
-    function validEmail(x) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x);
+    function setTheme(mode) {
+      if (mode === 'light') {
+        html.classList.remove('dark');
+        html.classList.add('light');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      } else {
+        html.classList.add('dark');
+        html.classList.remove('light');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      }
     }
 
-    form.addEventListener("submit", (ev) => {
-      ev.preventDefault();
-      let ok = true;
+    // Initial theme (default dark)
+    const saved = localStorage.getItem('nb-theme');
+    if (saved === 'light') setTheme('light'); else setTheme('dark');
 
-      if (!n.value.trim()) { ne.classList.remove("hidden"); ok = false; }
-      else ne.classList.add("hidden");
-
-      if (!validEmail(e.value.trim())) { ee.classList.remove("hidden"); ok = false; }
-      else ee.classList.add("hidden");
-
-      if (m.value.trim().length < 10) { me.classList.remove("hidden"); ok = false; }
-      else me.classList.add("hidden");
-
-      if (!ok) return;
-
-      fm.textContent = "Message validated ✔ (Demo only)";
-      form.reset();
-      setTimeout(() => fm.textContent = "", 3000);
+    themeToggle.addEventListener('click', () => {
+      const nowDark = !html.classList.contains('dark');
+      const mode = nowDark ? 'dark' : 'light';
+      setTheme(mode);
+      localStorage.setItem('nb-theme', mode);
     });
 
-    // year
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    $$('.fade-in').forEach(el => observer.observe(el));
+
+    // Contact form validation
+    const contactForm = document.getElementById('contactForm');
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+    const msgField = document.getElementById('message');
+    const nameErr = document.getElementById('nameErr');
+    const emailErr = document.getElementById('emailErr');
+    const msgErr = document.getElementById('msgErr');
+    const formMsg = document.getElementById('formMsg');
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+    }
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let ok = true;
+        formMsg.textContent = '';
+
+        if (!nameField.value.trim()) {
+          nameErr.classList.remove('hidden'); ok = false;
+        } else nameErr.classList.add('hidden');
+
+        if (!isValidEmail(emailField.value)) {
+          emailErr.classList.remove('hidden'); ok = false;
+        } else emailErr.classList.add('hidden');
+
+        if (msgField.value.trim().length < 10) {
+          msgErr.classList.remove('hidden'); ok = false;
+        } else msgErr.classList.add('hidden');
+
+        if (!ok) return;
+
+        contactForm.reset();
+        formMsg.textContent = 'Thanks! This form is a demo — your message was validated locally.';
+        setTimeout(() => formMsg.textContent = '', 5000);
+      });
+    }
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-
 </body>
-
 </html>
-
-
