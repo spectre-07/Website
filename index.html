@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Norris Bar — Portfolio</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            nebula: {
+              900: '#0c0018',
+              800: '#1a0730'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hover-card {
+      transition: all .35s ease;
+      backdrop-filter: blur(12px);
+    }
+
+    .hover-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+      border-color: rgba(200, 150, 255, 0.5);
+    }
+
+    .hover-btn {
+      transition: all .25s ease;
+    }
+
+    .hover-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(180, 100, 255, 0.4);
+    }
+
+    .hover-img {
+      transition: transform .45s ease, filter .45s ease;
+    }
+
+    .hover-img:hover {
+      transform: scale(1.04);
+      filter: brightness(1.15);
+    }
+
+    .hover-underline {
+      position: relative;
+    }
+
+    .hover-underline::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(to right, #c084fc, #818cf8);
+      transition: width .3s ease;
+    }
+
+    .hover-underline:hover::after {
+      width: 100%;
+    }
+
+    .active-nav {
+      border-bottom: 3px solid #c084fc;
+    }
+  </style>
+</head>
+
+<body
+  class="dark bg-gradient-to-br from-nebula-900 via-purple-900 to-fuchsia-900 text-slate-100 min-h-screen">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 bg-slate-950/80 backdrop-blur-xl border-b border-purple-800 z-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <nav class="flex items-center justify-between h-16">
+
+        <a href="#home" class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 via-fuchsia-500 to-indigo-600 flex items-center justify-center text-white font-bold">
+            NB
+          </div>
+          <div class="hidden sm:block">
+            <p class="font-semibold text-lg">Norris Bar</p>
+            <p class="text-xs text-purple-300">Computer Engineering Student</p>
+          </div>
+        </a>
+
+        <ul class="hidden md:flex items-center gap-6 text-sm">
+          <li><a href="#home" class="nav-link hover-underline">Home</a></li>
+          <li><a href="#about" class="nav-link hover-underline">About</a></li>
+          <li><a href="#academics" class="nav-link hover-underline">Academics</a></li>
+          <li><a href="#projects" class="nav-link hover-underline">Projects</a></li>
+          <li><a href="#achievements" class="nav-link hover-underline">Achievements</a></li>
+          <li><a href="#contact" class="nav-link hover-underline">Contact</a></li>
+        </ul>
+
+        <!-- theme toggle -->
+        <button id="themeToggle"
+          class="p-2 rounded-lg border border-purple-500/40 hover:bg-slate-800">
+          🌙
+        </button>
+
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="max-w-6xl mx-auto px-4 py-16 space-y-24">
+
+    <!-- HERO -->
+    <section id="home" class="fade-in flex flex-col md:flex-row items-center gap-12">
+      <div class="w-full md:w-1/2">
+        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
+          Hi, I'm <span
+            class="bg-clip-text text-transparent bg-gradient-to-r from-purple-300 via-fuchsia-200 to-indigo-200">Norris
+            Bar</span>
+        </h1>
+        <p class="mt-4 text-slate-200/90">
+          A Computer Engineering student from Vasai, passionate about Python, logic building and
+          practical projects.
+        </p>
+
+        <div class="mt-6 flex gap-3">
+          <a href="#contact"
+            class="hover-btn bg-gradient-to-r from-purple-600 to-fuchsia-600 px-4 py-2 rounded-lg">Contact
+            Me</a>
+          <a href="#projects" class="hover-btn border border-purple-400/60 px-4 py-2 rounded-lg">My
+            Projects</a>
+        </div>
+      </div>
+
+      <div class="w-full md:w-1/2">
+        <div
+          class="relative rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)] border border-purple-500/40">
+          <img src="WhatsApp Image 2025-11-05 at 21.34.19 (1).jpeg" alt="Norris Bar"
+            class="hover-img w-full h-full object-cover">
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="fade-in">
+      <h2 class="text-3xl font-semibold">About Me</h2>
+
+      <p class="mt-4 text-slate-200/90">
+        I'm Norris Bar, pursuing B.Tech in Computer Engineering at Fr. Conceicao Rodrigues College
+        of Engineering.
+      </p>
+
+      <p class="mt-3 text-slate-300">
+        I love building small Python programs and improving my logic and problem-solving skills.
+      </p>
+
+      <!-- SOCIAL LINKS -->
+      <div class="mt-6 flex flex-wrap gap-4 text-sm">
+
+        <a href="https://www.instagram.com/norris.bar_03/" target="_blank"
+          class="px-3 py-1 bg-purple-700/40 rounded-lg border border-purple-400/40 hover:bg-purple-700/60">Instagram</a>
+
+        <a href="https://x.com/BarNorris03" target="_blank"
+          class="px-3 py-1 bg-purple-700/40 rounded-lg border border-purple-400/40 hover:bg-purple-700/60">X
+          (Twitter)</a>
+
+        <a href="https://www.linkedin.com/in/norris-bar-2a3127379/" target="_blank"
+          class="px-3 py-1 bg-purple-700/40 rounded-lg border border-purple-400/40 hover:bg-purple-700/60">LinkedIn</a>
+
+        <a href="https://github.com/spectre-07" target="_blank"
+          class="px-3 py-1 bg-purple-700/40 rounded-lg border border-purple-400/40 hover:bg-purple-700/60">GitHub</a>
+
+        <a href="mailto:barnorris2007@gmail.com"
+          class="px-3 py-1 bg-purple-700/40 rounded-lg border border-purple-400/40 hover:bg-purple-700/60">Email</a>
+
+      </div>
+    </section>
+
+    <!-- ACADEMICS -->
+    <section id="academics" class="fade-in">
+      <h2 class="text-3xl font-semibold">Academic Background</h2>
+
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+
+        <div class="hover-card bg-slate-900/40 border border-purple-700 p-6 rounded-xl">
+          <h3 class="text-purple-300 font-semibold">10th Grade</h3>
+          <p class="mt-2">Convent of Jesus & Mary High School</p>
+        </div>
+
+        <div class="hover-card bg-slate-900/40 border border-purple-700 p-6 rounded-xl">
+          <h3 class="text-purple-300 font-semibold">12th Grade</h3>
+          <p class="mt-2">Thomas Baptista Junior College</p>
+        </div>
+
+        <div class="hover-card bg-slate-900/40 border border-purple-700 p-6 rounded-xl">
+          <h3 class="text-purple-300 font-semibold">B.Tech (Current)</h3>
+          <p class="mt-2">Computer Engineering — Fr. C.R.C.E</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="fade-in">
+      <h2 class="text-3xl font-semibold">Python Projects</h2>
+      <p class="text-slate-300 mt-2">Approximately 5 Python based projects completed.</p>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+
+        <div class="hover-card bg-slate-900/40 border border-purple-700 p-6 rounded-xl">
+          <h3 class="text-purple-300 font-semibold">Automation Scripts</h3>
+          <p class="mt-2 text-slate-300 text-sm">Simple automation tasks using Python.</p>
+        </div>
+
+        <div class="hover-card bg-slate-900/40 border border-purple-700 p-6 rounded-xl">
+          <h3 class="text-purple-300 font-semibold">Console Applications</h3>
+          <p class="mt-2 text-slate-300 text-sm">Mini console programs for practice.</p>
+        </div>
+
+        <div class="hover-card bg-slate-900/40 border border-purple-700 p-6 rounded-xl">
+          <h3 class="text-purple-300 font-semibold">Practice Projects</h3>
+          <p class="mt-2 text-slate-300 text-sm">Basic programs created for learning.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="fade-in">
+      <h2 class="text-3xl font-semibold">Achievements</h2>
+      <div
+        class="mt-4 bg-slate-900/40 border border-purple-700 p-6 rounded-xl text-slate-400 italic">
+        Achievements will be added soon.
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="fade-in">
+      <h2 class="text-3xl font-semibold">Contact Me</h2>
+
+      <form id="contactForm"
+        class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-900/40 border border-purple-700 p-6 rounded-xl">
+
+        <div>
+          <label class="text-sm">Name</label>
+          <input id="name" class="mt-1 w-full p-2 rounded bg-slate-950 border border-purple-700"
+            placeholder="Your name">
+          <p id="nameErr" class="text-red-400 text-xs hidden">Please enter your name.</p>
+        </div>
+
+        <div>
+          <label class="text-sm">Email</label>
+          <input id="email" type="email"
+            class="mt-1 w-full p-2 rounded bg-slate-950 border border-purple-700"
+            placeholder="you@example.com">
+          <p id="emailErr" class="text-red-400 text-xs hidden">Enter a valid email address.</p>
+        </div>
+
+        <div class="md:col-span-2">
+          <label class="text-sm">Message</label>
+          <textarea id="message" rows="5"
+            class="mt-1 w-full p-2 rounded bg-slate-950 border border-purple-700"
+            placeholder="Your message"></textarea>
+          <p id="msgErr" class="text-red-400 text-xs hidden">Message must be at least 10
+            characters.</p>
+        </div>
+
+        <button
+          class="hover-btn bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-600 text-white px-4 py-2 rounded-lg">
+          Send Message (Demo)
+        </button>
+
+        <p id="formMsg" class="text-sm text-slate-300 mt-2"></p>
+
+      </form>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-8 text-sm text-slate-300 border-t border-purple-800 mt-20">
+
+    <p class="mb-4 text-purple-300">Connect with me</p>
+
+    <div class="flex justify-center gap-4 mb-4 text-sm">
+
+      <a href="https://www.instagram.com/norris.bar_03/" target="_blank"
+        class="hover:text-purple-300">Instagram</a>
+
+      <a href="https://x.com/BarNorris03" target="_blank"
+        class="hover:text-purple-300">X</a>
+
+      <a href="https://www.linkedin.com/in/norris-bar-2a3127379/" target="_blank"
+        class="hover:text-purple-300">LinkedIn</a>
+
+      <a href="https://github.com/spectre-07" target="_blank"
+        class="hover:text-purple-300">GitHub</a>
+
+      <a href="mailto:barnorris2007@gmail.com" class="hover:text-purple-300">Email</a>
+
+    </div>
+
+    <p>© <span id="year"></span> Norris Bar</p>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    // theme toggle
+    const toggle = document.getElementById("themeToggle");
+    toggle.addEventListener("click", () => {
+      document.documentElement.classList.toggle("dark");
+    });
+
+    // fade in
+    window.addEventListener("load", () => {
+      document.querySelectorAll(".fade-in").forEach(el =>
+        setTimeout(() => el.classList.add("visible"), 150)
+      );
+    });
+
+    // contact form validation
+    const form = document.getElementById("contactForm");
+    const n = document.getElementById("name");
+    const e = document.getElementById("email");
+    const m = document.getElementById("message");
+    const ne = document.getElementById("nameErr");
+    const ee = document.getElementById("emailErr");
+    const me = document.getElementById("msgErr");
+    const fm = document.getElementById("formMsg");
+
+    function validEmail(x) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x);
+    }
+
+    form.addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      let ok = true;
+
+      if (!n.value.trim()) { ne.classList.remove("hidden"); ok = false; }
+      else ne.classList.add("hidden");
+
+      if (!validEmail(e.value.trim())) { ee.classList.remove("hidden"); ok = false; }
+      else ee.classList.add("hidden");
+
+      if (m.value.trim().length < 10) { me.classList.remove("hidden"); ok = false; }
+      else me.classList.add("hidden");
+
+      if (!ok) return;
+
+      fm.textContent = "Message validated ✔ (Demo only)";
+      form.reset();
+      setTimeout(() => fm.textContent = "", 3000);
+    });
+
+    // year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+
+</html>
+
+
