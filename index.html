@@ -34,7 +34,7 @@
         linear-gradient(145deg, #020617, #1e1b4b 55%, #4c1d95);
     }
 
-    /* LIGHT MODE BACKGROUND FIX */
+    /* LIGHT MODE BACKGROUND */
     .light body {
       background:
         radial-gradient(circle at 0% 0%, rgba(129,140,248,0.2), transparent 55%),
@@ -109,7 +109,15 @@
       background: radial-gradient(circle at 0% 0%, rgba(168,85,247,0.55), rgba(37,99,235,0.9));
     }
 
-    /* FIX LIGHT MODE READABILITY */
+    input, textarea { color: #e5e7eb; }
+    .light input, .light textarea { color: #1e293b; }
+
+    .focus-ring:focus {
+      outline: 2px solid transparent;
+      box-shadow: 0 0 0 3px rgba(129,140,248,0.6);
+    }
+
+    /* LIGHT MODE TEXT / ELEMENTS */
     .light h1,
     .light h2,
     .light h3,
@@ -118,7 +126,7 @@
     .light span,
     .light li,
     .light label {
-      color: #1e293b !important; /* slate-800 */
+      color: #1e293b !important;
     }
 
     .light .social-link {
@@ -137,6 +145,12 @@
     .light footer {
       background: #f1f5f9 !important;
       color: #1e293b !important;
+    }
+
+    /* MODAL ANIMATION */
+    @keyframes zoomIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
@@ -166,6 +180,7 @@
         </ul>
 
         <div class="flex items-center gap-3">
+          <!-- Theme toggle -->
           <button id="themeToggle" class="p-2 rounded-lg border border-violet-500/60 bg-slate-900/70 hover:bg-slate-800/90 focus-ring" aria-label="Toggle dark mode">
             <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-300 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="4" />
@@ -176,6 +191,7 @@
             </svg>
           </button>
 
+          <!-- Mobile menu button -->
           <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-slate-800 focus-ring" aria-label="Toggle menu">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-100" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -185,6 +201,7 @@
       </nav>
     </div>
 
+    <!-- Mobile menu -->
     <div id="mobileMenu" class="hidden md:hidden border-t border-slate-800 bg-slate-950/95">
       <div class="px-4 pb-4 flex flex-col gap-2 text-sm text-slate-100">
         <a class="py-2" href="#home">Home</a>
@@ -253,12 +270,10 @@
         <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-4">About Me</h2>
         <p class="text-sm sm:text-base text-slate-300/95 leading-relaxed">
           I’m a Computer Engineering student who enjoys understanding how things work and building projects step by step.
-          I’m exploring programming, especially <span class="font-semibold text-violet-200">Python</span>,
-          and learning the basics of web development and other core subjects.
+          I’m exploring programming, especially <span class="font-semibold text-violet-200">Python</span>, and learning the basics of web development and other core subjects.
         </p>
         <p class="mt-3 text-sm sm:text-base text-slate-300/95">
-          I like to keep my work organised, readable, and easy to understand.
-          My goal is to keep improving my skills and build a strong foundation for future opportunities in software.
+          I like to keep my work organised, readable, and easy to understand. My goal is to keep improving my skills and build a strong foundation for future opportunities in software and related fields.
         </p>
 
         <h3 class="mt-6 text-sm font-semibold tracking-wide text-violet-300 uppercase">Skills (Growing)</h3>
@@ -273,26 +288,25 @@
       </div>
     </section>
 
-    <!-- ACADEMICS (UPDATED LAYOUT + LIGHT MODE FIX) -->
+    <!-- ACADEMICS (HORIZONTAL + ACHIEVEMENTS BELOW) -->
     <section id="academics" class="fade-in">
 
       <!-- Row 1: Academic Journey + Courses -->
       <div class="grid md:grid-cols-2 gap-6 mb-8">
-
         <!-- Academic Journey -->
         <div class="glass rounded-3xl p-6 sm:p-7 hover-card">
-          <h2 class="text-2xl font-semibold mb-4">Academic Journey</h2>
-          <ul class="space-y-3 text-sm sm:text-base">
+          <h2 class="text-2xl font-semibold text-slate-50 mb-4">Academic Journey</h2>
+          <ul class="space-y-3 text-sm sm:text-base text-slate-200">
             <li>
-              <span class="font-semibold text-violet-400">10th Grade</span><br>
+              <span class="font-semibold text-violet-200">10th Grade</span><br>
               Convent of Jesus and Mary High School
             </li>
             <li>
-              <span class="font-semibold text-violet-400">12th Grade</span><br>
+              <span class="font-semibold text-violet-200">12th Grade</span><br>
               Thomas Baptista Junior College
             </li>
             <li>
-              <span class="font-semibold text-violet-400">B.Tech in Computer Engineering</span><br>
+              <span class="font-semibold text-violet-200">B.Tech in Computer Engineering</span><br>
               Fr. Conceicao Rodrigues College of Engineering (Currently pursuing)
             </li>
           </ul>
@@ -300,68 +314,72 @@
 
         <!-- Courses & Learning -->
         <div class="glass rounded-3xl p-6 sm:p-7 hover-card">
-          <h3 class="text-xl font-semibold mb-4">Courses & Learning</h3>
-          <ul class="list-disc list-inside text-sm space-y-1">
+          <h3 class="text-xl font-semibold text-slate-50 mb-4">Courses & Learning</h3>
+          <ul class="list-disc list-inside text-sm text-slate-200 space-y-1">
             <li>Python programming (multiple beginner to intermediate projects)</li>
             <li>Introductory C programming & problem solving</li>
             <li>Basics of HTML & CSS</li>
             <li>Foundations of Computer Engineering subjects (in progress)</li>
           </ul>
         </div>
-
       </div>
 
-      <!-- Achievements (Row 2 – full width) -->
+      <!-- Row 2: Achievements + popup-ready certificates -->
       <div class="glass rounded-3xl p-6 sm:p-7 hover-card">
-        <h3 class="text-2xl font-semibold mb-4">Achievements</h3>
+        <h3 class="text-2xl font-semibold text-slate-50 mb-4">Achievements</h3>
 
-        <p class="text-sm mb-6">
+        <p class="text-sm text-slate-300/90 mb-6">
           Certificates earned from completing MathWorks training programs.
         </p>
 
         <!-- Certificate 1 -->
         <div class="mb-10">
-          <h4 class="text-sm font-semibold text-violet-400 mb-2">Deep Learning Onramp Certificate</h4>
-          <img src="certificate1.jpg.jpg"
-               class="w-full max-w-lg mx-auto rounded-xl border border-slate-700 shadow-lg"
-               style="max-height: 330px; object-fit: contain;"
-               alt="Deep Learning Certificate">
+          <h4 class="text-sm font-semibold text-violet-200 mb-2">Deep Learning Onramp Certificate</h4>
+          <img
+            src="certificate1.jpg.jpg"
+            class="w-full max-w-lg mx-auto rounded-xl border border-slate-700 shadow-lg cursor-pointer hover:opacity-80 transition"
+            style="max-height: 330px; object-fit: contain;"
+            alt="Deep Learning Certificate"
+            onclick="openModal('certificate1.jpg.jpg')"
+          >
         </div>
 
         <!-- Certificate 2 -->
         <div>
-          <h4 class="text-sm font-semibold text-violet-400 mb-2">Machine Learning Onramp Certificate</h4>
-          <img src="certificate2.jpg.jpg"
-               class="w-full max-w-lg mx-auto rounded-xl border border-slate-700 shadow-lg"
-               style="max-height: 330px; object-fit: contain;"
-               alt="Machine Learning Certificate">
+          <h4 class="text-sm font-semibold text-violet-200 mb-2">Machine Learning Onramp Certificate</h4>
+          <img
+            src="certificate2.jpg.jpg"
+            class="w-full max-w-lg mx-auto rounded-xl border border-slate-700 shadow-lg cursor-pointer hover:opacity-80 transition"
+            style="max-height: 330px; object-fit: contain;"
+            alt="Machine Learning Certificate"
+            onclick="openModal('certificate2.jpg.jpg')"
+          >
         </div>
       </div>
-
     </section>
 
     <!-- PROJECTS -->
     <section id="projects" class="fade-in">
       <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
-        <h2 class="text-2xl sm:text-3xl font-semibold mb-4">Python Projects</h2>
-        <p class="text-sm sm:text-base mb-4">
-          I’ve completed around <span class="font-semibold text-violet-400">five projects in Python</span> that helped me practise logic, loops, functions, and basic data structures.
+        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-4">Python Projects</h2>
+        <p class="text-sm sm:text-base text-slate-300/95 mb-4">
+          I’ve completed around <span class="font-semibold text-violet-200">five projects in Python</span> that helped me practise logic, loops, functions, and basic data structures.
         </p>
-        <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div class="grid md:grid-cols-2 gap-4 text-sm text-slate-200">
           <div class="border border-slate-700/80 rounded-2xl p-4 bg-slate-950/60">
-            <h3 class="font-semibold text-violet-400 mb-1">Small Utility Programs</h3>
+            <h3 class="font-semibold text-violet-200 mb-1">Small Utility Programs</h3>
             <p>Mini tools like calculators, converters, and pattern generators to understand control flow and functions.</p>
           </div>
           <div class="border border-slate-700/80 rounded-2xl p-4 bg-slate-950/60">
-            <h3 class="font-semibold text-violet-400 mb-1">Practice Problems</h3>
+            <h3 class="font-semibold text-violet-200 mb-1">Practice Problems</h3>
             <p>Programs focused on loops, lists, and simple logic to build confidence in problem solving.</p>
           </div>
           <div class="border border-slate-700/80 rounded-2xl p-4 bg-slate-950/60">
-            <h3 class="font-semibold text-violet-400 mb-1">File & String Tasks</h3>
+            <h3 class="font-semibold text-violet-200 mb-1">File & String Tasks</h3>
             <p>Experiments with basic file handling and string operations to understand how Python manages data.</p>
           </div>
           <div class="border border-slate-700/80 rounded-2xl p-4 bg-slate-950/60">
-            <h3 class="font-semibold text-violet-400 mb-1">More Coming Soon</h3>
+            <h3 class="font-semibold text-violet-200 mb-1">More Coming Soon</h3>
             <p>I plan to move towards slightly bigger projects like small web apps or automation scripts.</p>
           </div>
         </div>
@@ -371,18 +389,39 @@
     <!-- GALLERY -->
     <section class="fade-in">
       <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
-        <h2 class="text-2xl sm:text-3xl font-semibold mb-3">Gallery</h2>
-        <p class="text-sm sm:text-base">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-3">Gallery</h2>
+        <p class="text-sm sm:text-base text-slate-300/90 mb-6">
           This section will showcase screenshots, photos from events, and project visuals in the future.
         </p>
+
+        <!-- Image Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+          <img src="img1.jpeg"
+               onclick="openModal('img1.jpeg')"
+               class="rounded-xl border border-slate-700 cursor-pointer hover:opacity-80 transition">
+
+          <img src="img2.jpeg"
+               onclick="openModal('img2.jpeg')"
+               class="rounded-xl border border-slate-700 cursor-pointer hover:opacity-80 transition">
+
+          <img src="img3.jpeg"
+               onclick="openModal('img3.jpeg')"
+               class="rounded-xl border border-slate-700 cursor-pointer hover:opacity-80 transition">
+
+          <img src="img4.jpeg"
+               onclick="openModal('img4.jpeg')"
+               class="rounded-xl border border-slate-700 cursor-pointer hover:opacity-80 transition">
+
+        </div>
       </div>
     </section>
 
     <!-- SOCIALS -->
     <section class="fade-in">
       <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
-        <h2 class="text-2xl sm:text-3xl font-semibold mb-4">Connect With Me</h2>
-        <p class="text-sm sm:text-base mb-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-4">Connect With Me</h2>
+        <p class="text-sm sm:text-base text-slate-300/95 mb-4">
           You can reach me through email or any of these platforms.
         </p>
         <div class="flex flex-wrap gap-3">
@@ -408,14 +447,14 @@
     <!-- CONTACT -->
     <section id="contact" class="fade-in mb-8">
       <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
-        <h2 class="text-2xl sm:text-3xl font-semibold mb-2">Contact Me</h2>
-        <p class="text-sm sm:text-base mb-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-2">Contact Me</h2>
+        <p class="text-sm sm:text-base text-slate-300/95 mb-4">
           The best way to reach me is via email or LinkedIn. You can also use this simple contact form.
         </p>
 
         <form id="contactForm" class="grid grid-cols-1 md:grid-cols-2 gap-4" novalidate>
           <div class="flex flex-col gap-1">
-            <label class="text-xs font-medium">Name</label>
+            <label class="text-xs font-medium text-slate-200">Name</label>
             <input id="name" type="text" required
                    class="focus-ring text-sm rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2"
                    placeholder="Your name">
@@ -423,7 +462,7 @@
           </div>
 
           <div class="flex flex-col gap-1">
-            <label class="text-xs font-medium">Email</label>
+            <label class="text-xs font-medium text-slate-200">Email</label>
             <input id="email" type="email" required
                    class="focus-ring text-sm rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2"
                    placeholder="you@example.com">
@@ -431,7 +470,7 @@
           </div>
 
           <div class="md:col-span-2 flex flex-col gap-1">
-            <label class="text-xs font-medium">Message</label>
+            <label class="text-xs font-medium text-slate-200">Message</label>
             <textarea id="message" rows="5" required
                       class="focus-ring text-sm rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2"
                       placeholder="Write at least 10 characters here..."></textarea>
@@ -443,7 +482,7 @@
                     class="hover-btn inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 text-white shadow-lg">
               Send message
             </button>
-            <div id="formMsg" class="text-xs sm:text-sm"></div>
+            <div id="formMsg" class="text-xs sm:text-sm text-slate-200"></div>
           </div>
         </form>
       </div>
@@ -451,24 +490,39 @@
 
   </main>
 
+  <!-- CERTIFICATE POPUP MODAL -->
+  <div id="imgModal"
+       class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-[9999]">
+    <div class="relative max-w-3xl w-[90%] animate-[zoomIn_0.25s_ease]">
+      <button
+        onclick="closeModal()"
+        class="absolute -top-10 right-0 text-white text-3xl font-bold hover:text-gray-300">
+        ×
+      </button>
+      <img
+        id="modalImg"
+        src=""
+        class="w-full max-h-[85vh] object-contain rounded-xl shadow-2xl border border-slate-600">
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="border-t border-slate-800 bg-slate-950/90">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm text-slate-400">
       <div>© <span id="year"></span> Norris Bar. All rights reserved.</div>
       <div class="flex flex-wrap gap-3">
-        <span>Email:</span>
-        <a href="mailto:barnorris2007@gmail.com" class="hover-underline">barnorris2007@gmail.com</a>
+        <span class="text-slate-500">Email:</span>
+        <a href="mailto:barnorris2007@gmail.com" class="hover-underline text-slate-200">barnorris2007@gmail.com</a>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPT -->
+  <!-- SCRIPTS -->
   <script>
     const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
     const html = document.documentElement;
     const themeToggle = document.getElementById('themeToggle');
-
     const sunIcon = document.getElementById('sunIcon');
     const moonIcon = document.getElementById('moonIcon');
 
@@ -496,6 +550,7 @@
       localStorage.setItem('nb-theme', mode);
     });
 
+    // Mobile menu
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     if (menuBtn) {
@@ -504,6 +559,7 @@
       });
     }
 
+    // Fade-in on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -515,6 +571,7 @@
 
     $$('.fade-in').forEach(el => observer.observe(el));
 
+    // Contact form validation
     const contactForm = document.getElementById('contactForm');
     const nameField = document.getElementById('name');
     const emailField = document.getElementById('email');
@@ -554,8 +611,27 @@
       });
     }
 
+    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 
+    // Certificate & Gallery popup modal
+    const modal = document.getElementById('imgModal');
+    const modalImg = document.getElementById('modalImg');
+
+    function openModal(src) {
+      modalImg.src = src;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  </script>
 </body>
 </html>
