@@ -25,6 +25,7 @@
   <style>
     html { scroll-behavior: smooth; }
 
+    /* DARK MODE BACKGROUND */
     body {
       min-height: 100vh;
       background:
@@ -32,11 +33,13 @@
         radial-gradient(circle at 90% 80%, rgba(59,130,246,0.18), transparent 55%),
         linear-gradient(145deg, #020617, #1e1b4b 55%, #4c1d95);
     }
+
+    /* LIGHT MODE BACKGROUND FIX */
     .light body {
       background:
-        radial-gradient(circle at 0% 0%, rgba(129,140,248,0.24), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(236,72,153,0.16), transparent 55%),
-        linear-gradient(145deg, #eef2ff, #ede9fe);
+        radial-gradient(circle at 0% 0%, rgba(129,140,248,0.2), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(236,72,153,0.12), transparent 55%),
+        linear-gradient(145deg, #f8fafc, #eef2ff);
     }
 
     .glass {
@@ -45,8 +48,8 @@
       border: 1px solid rgba(148,163,184,0.35);
     }
     .light .glass {
-      background: rgba(255,255,255,0.85);
-      border-color: rgba(148,163,184,0.5);
+      background: rgba(255,255,255,0.95) !important;
+      border-color: rgba(148,163,184,0.65) !important;
     }
 
     .hover-card {
@@ -105,18 +108,35 @@
       border-color: rgba(216,180,254,0.9);
       background: radial-gradient(circle at 0% 0%, rgba(168,85,247,0.55), rgba(37,99,235,0.9));
     }
-    .light .social-link {
-      color: #111827;
-      background: rgba(224,231,255,0.9);
-      border-color: rgba(165,180,252,0.9);
+
+    /* FIX LIGHT MODE READABILITY */
+    .light h1,
+    .light h2,
+    .light h3,
+    .light h4,
+    .light p,
+    .light span,
+    .light li,
+    .light label {
+      color: #1e293b !important; /* slate-800 */
     }
 
-    input, textarea { color: #e5e7eb; }
-    .light input, .light textarea { color: #1e293b; }
+    .light .social-link {
+      background: rgba(224,231,255,0.95) !important;
+      color: #111827 !important;
+      border-color: rgba(165,180,252,0.9) !important;
+    }
 
-    .focus-ring:focus {
-      outline: 2px solid transparent;
-      box-shadow: 0 0 0 3px rgba(129,140,248,0.6);
+    .light input,
+    .light textarea {
+      background: rgba(255,255,255,0.9) !important;
+      border-color: #cbd5e1 !important;
+      color: #1e293b !important;
+    }
+
+    .light footer {
+      background: #f1f5f9 !important;
+      color: #1e293b !important;
     }
   </style>
 </head>
@@ -229,20 +249,22 @@
 
     <!-- ABOUT -->
     <section id="about" class="fade-in">
-      <div class="glass rounded-3xl p-6 sm:px-8 hover-card">
+      <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
         <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-4">About Me</h2>
         <p class="text-sm sm:text-base text-slate-300/95 leading-relaxed">
           I’m a Computer Engineering student who enjoys understanding how things work and building projects step by step.
-          I’m exploring programming, especially <span class="font-semibold text-violet-200">Python</span>, and learning the basics of web development and other core subjects.
+          I’m exploring programming, especially <span class="font-semibold text-violet-200">Python</span>,
+          and learning the basics of web development and other core subjects.
         </p>
         <p class="mt-3 text-sm sm:text-base text-slate-300/95">
-          I like to keep my work organised, readable, and easy to understand. My goal is to keep improving my skills and build a strong foundation for future opportunities in software and related fields.
+          I like to keep my work organised, readable, and easy to understand.
+          My goal is to keep improving my skills and build a strong foundation for future opportunities in software.
         </p>
 
         <h3 class="mt-6 text-sm font-semibold tracking-wide text-violet-300 uppercase">Skills (Growing)</h3>
         <div class="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs sm:text-sm text-slate-200">
           <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">Python (Beginner–Intermediate)</span>
-          <span class="px-3 py-1 rounded-full bg-sate-900/70 border border-slate-600/80">C Basics</span>
+          <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">C Basics</span>
           <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">HTML & CSS Basics</span>
           <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">Problem Solving</span>
           <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">Team Collaboration</span>
@@ -251,7 +273,7 @@
       </div>
     </section>
 
-    <!-- ACADEMICS (UPDATED LAYOUT) -->
+    <!-- ACADEMICS (UPDATED LAYOUT + LIGHT MODE FIX) -->
     <section id="academics" class="fade-in">
 
       <!-- Row 1: Academic Journey + Courses -->
@@ -259,18 +281,18 @@
 
         <!-- Academic Journey -->
         <div class="glass rounded-3xl p-6 sm:p-7 hover-card">
-          <h2 class="text-2xl font-semibold text-slate-50 mb-4">Academic Journey</h2>
-          <ul class="space-y-3 text-sm sm:text-base text-slate-200">
+          <h2 class="text-2xl font-semibold mb-4">Academic Journey</h2>
+          <ul class="space-y-3 text-sm sm:text-base">
             <li>
-              <span class="font-semibold text-violet-200">10th Grade</span><br>
+              <span class="font-semibold text-violet-400">10th Grade</span><br>
               Convent of Jesus and Mary High School
             </li>
             <li>
-              <span class="font-semibold text-violet-200">12th Grade</span><br>
+              <span class="font-semibold text-violet-400">12th Grade</span><br>
               Thomas Baptista Junior College
             </li>
             <li>
-              <span class="font-semibold text-violet-200">B.Tech in Computer Engineering</span><br>
+              <span class="font-semibold text-violet-400">B.Tech in Computer Engineering</span><br>
               Fr. Conceicao Rodrigues College of Engineering (Currently pursuing)
             </li>
           </ul>
@@ -278,8 +300,8 @@
 
         <!-- Courses & Learning -->
         <div class="glass rounded-3xl p-6 sm:p-7 hover-card">
-          <h3 class="text-xl font-semibold text-slate-50 mb-4">Courses & Learning</h3>
-          <ul class="list-disc list-inside text-sm text-slate-200 space-y-1">
+          <h3 class="text-xl font-semibold mb-4">Courses & Learning</h3>
+          <ul class="list-disc list-inside text-sm space-y-1">
             <li>Python programming (multiple beginner to intermediate projects)</li>
             <li>Introductory C programming & problem solving</li>
             <li>Basics of HTML & CSS</li>
@@ -289,17 +311,17 @@
 
       </div>
 
-      <!-- Row 2: Achievements BELOW -->
+      <!-- Achievements (Row 2 – full width) -->
       <div class="glass rounded-3xl p-6 sm:p-7 hover-card">
-        <h3 class="text-2xl font-semibold text-slate-50 mb-4">Achievements</h3>
+        <h3 class="text-2xl font-semibold mb-4">Achievements</h3>
 
-        <p class="text-sm text-slate-300/90 mb-6">
+        <p class="text-sm mb-6">
           Certificates earned from completing MathWorks training programs.
         </p>
 
         <!-- Certificate 1 -->
         <div class="mb-10">
-          <h4 class="text-sm font-semibold text-violet-200 mb-2">Deep Learning Onramp Certificate</h4>
+          <h4 class="text-sm font-semibold text-violet-400 mb-2">Deep Learning Onramp Certificate</h4>
           <img src="certificate1.jpg.jpg"
                class="w-full max-w-lg mx-auto rounded-xl border border-slate-700 shadow-lg"
                style="max-height: 330px; object-fit: contain;"
@@ -308,7 +330,7 @@
 
         <!-- Certificate 2 -->
         <div>
-          <h4 class="text-sm font-semibold text-violet-200 mb-2">Machine Learning Onramp Certificate</h4>
+          <h4 class="text-sm font-semibold text-violet-400 mb-2">Machine Learning Onramp Certificate</h4>
           <img src="certificate2.jpg.jpg"
                class="w-full max-w-lg mx-auto rounded-xl border border-slate-700 shadow-lg"
                style="max-height: 330px; object-fit: contain;"
@@ -321,25 +343,25 @@
     <!-- PROJECTS -->
     <section id="projects" class="fade-in">
       <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
-        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-4">Python Projects</h2>
-        <p class="text-sm sm:text-base text-slate-300/95 mb-4">
-          I’ve completed around <span class="font-semibold text-violet-200">five projects in Python</span> that helped me practise logic, loops, functions, and basic data structures.
+        <h2 class="text-2xl sm:text-3xl font-semibold mb-4">Python Projects</h2>
+        <p class="text-sm sm:text-base mb-4">
+          I’ve completed around <span class="font-semibold text-violet-400">five projects in Python</span> that helped me practise logic, loops, functions, and basic data structures.
         </p>
-        <div class="grid md:grid-cols-2 gap-4 text-sm text-slate-200">
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
           <div class="border border-slate-700/80 rounded-2xl p-4 bg-slate-950/60">
-            <h3 class="font-semibold text-violet-200 mb-1">Small Utility Programs</h3>
+            <h3 class="font-semibold text-violet-400 mb-1">Small Utility Programs</h3>
             <p>Mini tools like calculators, converters, and pattern generators to understand control flow and functions.</p>
           </div>
           <div class="border border-slate-700/80 rounded-2xl p-4 bg-slate-950/60">
-            <h3 class="font-semibold text-violet-200 mb-1">Practice Problems</h3>
+            <h3 class="font-semibold text-violet-400 mb-1">Practice Problems</h3>
             <p>Programs focused on loops, lists, and simple logic to build confidence in problem solving.</p>
           </div>
           <div class="border border-slate-700/80 rounded-2xl p-4 bg-slate-950/60">
-            <h3 class="font-semibold text-violet-200 mb-1">File & String Tasks</h3>
+            <h3 class="font-semibold text-violet-400 mb-1">File & String Tasks</h3>
             <p>Experiments with basic file handling and string operations to understand how Python manages data.</p>
           </div>
           <div class="border border-slate-700/80 rounded-2xl p-4 bg-slate-950/60">
-            <h3 class="font-semibold text-violet-200 mb-1">More Coming Soon</h3>
+            <h3 class="font-semibold text-violet-400 mb-1">More Coming Soon</h3>
             <p>I plan to move towards slightly bigger projects like small web apps or automation scripts.</p>
           </div>
         </div>
@@ -349,8 +371,8 @@
     <!-- GALLERY -->
     <section class="fade-in">
       <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
-        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-3">Gallery</h2>
-        <p class="text-sm sm:text-base text-slate-300/90">
+        <h2 class="text-2xl sm:text-3xl font-semibold mb-3">Gallery</h2>
+        <p class="text-sm sm:text-base">
           This section will showcase screenshots, photos from events, and project visuals in the future.
         </p>
       </div>
@@ -359,8 +381,8 @@
     <!-- SOCIALS -->
     <section class="fade-in">
       <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
-        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-4">Connect With Me</h2>
-        <p class="text-sm sm:text-base text-slate-300/95 mb-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold mb-4">Connect With Me</h2>
+        <p class="text-sm sm:text-base mb-4">
           You can reach me through email or any of these platforms.
         </p>
         <div class="flex flex-wrap gap-3">
@@ -386,14 +408,14 @@
     <!-- CONTACT -->
     <section id="contact" class="fade-in mb-8">
       <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
-        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-2">Contact Me</h2>
-        <p class="text-sm sm:text-base text-slate-300/95 mb-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold mb-2">Contact Me</h2>
+        <p class="text-sm sm:text-base mb-4">
           The best way to reach me is via email or LinkedIn. You can also use this simple contact form.
         </p>
 
         <form id="contactForm" class="grid grid-cols-1 md:grid-cols-2 gap-4" novalidate>
           <div class="flex flex-col gap-1">
-            <label class="text-xs font-medium text-slate-200">Name</label>
+            <label class="text-xs font-medium">Name</label>
             <input id="name" type="text" required
                    class="focus-ring text-sm rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2"
                    placeholder="Your name">
@@ -401,7 +423,7 @@
           </div>
 
           <div class="flex flex-col gap-1">
-            <label class="text-xs font-medium text-slate-200">Email</label>
+            <label class="text-xs font-medium">Email</label>
             <input id="email" type="email" required
                    class="focus-ring text-sm rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2"
                    placeholder="you@example.com">
@@ -409,7 +431,7 @@
           </div>
 
           <div class="md:col-span-2 flex flex-col gap-1">
-            <label class="text-xs font-medium text-slate-200">Message</label>
+            <label class="text-xs font-medium">Message</label>
             <textarea id="message" rows="5" required
                       class="focus-ring text-sm rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2"
                       placeholder="Write at least 10 characters here..."></textarea>
@@ -421,7 +443,7 @@
                     class="hover-btn inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 text-white shadow-lg">
               Send message
             </button>
-            <div id="formMsg" class="text-xs sm:text-sm text-slate-200"></div>
+            <div id="formMsg" class="text-xs sm:text-sm"></div>
           </div>
         </form>
       </div>
@@ -431,21 +453,22 @@
 
   <!-- FOOTER -->
   <footer class="border-t border-slate-800 bg-slate-950/90">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm text-slate-400">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm">
       <div>© <span id="year"></span> Norris Bar. All rights reserved.</div>
       <div class="flex flex-wrap gap-3">
-        <span class="text-slate-500">Email:</span>
-        <a href="mailto:barnorris2007@gmail.com" class="hover-underline text-slate-200">barnorris2007@gmail.com</a>
+        <span>Email:</span>
+        <a href="mailto:barnorris2007@gmail.com" class="hover-underline">barnorris2007@gmail.com</a>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
+  <!-- SCRIPT -->
   <script>
     const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
     const html = document.documentElement;
     const themeToggle = document.getElementById('themeToggle');
+
     const sunIcon = document.getElementById('sunIcon');
     const moonIcon = document.getElementById('moonIcon');
 
