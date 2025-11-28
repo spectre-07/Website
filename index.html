@@ -25,7 +25,6 @@
   <style>
     html { scroll-behavior: smooth; }
 
-    /* Background gradients */
     body {
       min-height: 100vh;
       background:
@@ -50,7 +49,6 @@
       border-color: rgba(148,163,184,0.5);
     }
 
-    /* Smooth hover / animation */
     .hover-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
@@ -89,7 +87,6 @@
       transform: translateY(0);
     }
 
-    /* Icons / social */
     .social-link {
       display: inline-flex;
       align-items: center;
@@ -114,11 +111,9 @@
       border-color: rgba(165,180,252,0.9);
     }
 
-    /* Inputs text color */
     input, textarea { color: #e5e7eb; }
     .light input, .light textarea { color: #1e293b; }
 
-    /* Focus ring */
     .focus-ring:focus {
       outline: 2px solid transparent;
       box-shadow: 0 0 0 3px rgba(129,140,248,0.6);
@@ -151,7 +146,6 @@
         </ul>
 
         <div class="flex items-center gap-3">
-          <!-- Theme toggle -->
           <button id="themeToggle" class="p-2 rounded-lg border border-violet-500/60 bg-slate-900/70 hover:bg-slate-800/90 focus-ring" aria-label="Toggle dark mode">
             <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-300 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="4" />
@@ -162,7 +156,6 @@
             </svg>
           </button>
 
-          <!-- Mobile menu button -->
           <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-slate-800 focus-ring" aria-label="Toggle menu">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-100" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -172,7 +165,6 @@
       </nav>
     </div>
 
-    <!-- Mobile menu -->
     <div id="mobileMenu" class="hidden md:hidden border-t border-slate-800 bg-slate-950/95">
       <div class="px-4 pb-4 flex flex-col gap-2 text-sm text-slate-100">
         <a class="py-2" href="#home">Home</a>
@@ -218,7 +210,6 @@
       <div class="md:w-1/2">
         <div class="glass hover-card rounded-3xl p-3 sm:p-4 shadow-2xl flex flex-col items-center border border-slate-700/70">
           <div class="relative w-full aspect-[4/5] overflow-hidden rounded-2xl">
-            <!-- 🔥 PATH FIXED HERE -->
             <img src="Website_image.jpeg" alt="Norris Bar on a bench" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/10 to-transparent"></div>
           </div>
@@ -237,11 +228,8 @@
     </section>
 
     <!-- ABOUT -->
-    <!-- (rest of your sections stay EXACTLY the same) -->
-    <!-- ... -->
- <!-- ABOUT -->
     <section id="about" class="fade-in">
-      <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
+      <div class="glass rounded-3xl p-6 sm:px-8 hover-card">
         <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-4">About Me</h2>
         <p class="text-sm sm:text-base text-slate-300/95 leading-relaxed">
           I’m a Computer Engineering student who enjoys understanding how things work and building projects step by step.
@@ -254,7 +242,7 @@
         <h3 class="mt-6 text-sm font-semibold tracking-wide text-violet-300 uppercase">Skills (Growing)</h3>
         <div class="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs sm:text-sm text-slate-200">
           <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">Python (Beginner–Intermediate)</span>
-          <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">C Basics</span>
+          <span class="px-3 py-1 rounded-full bg-sate-900/70 border border-slate-600/80">C Basics</span>
           <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">HTML & CSS Basics</span>
           <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">Problem Solving</span>
           <span class="px-3 py-1 rounded-full bg-slate-900/70 border border-slate-600/80">Team Collaboration</span>
@@ -263,9 +251,13 @@
       </div>
     </section>
 
-    <!-- ACADEMICS -->
+    <!-- ACADEMICS (UPDATED LAYOUT) -->
     <section id="academics" class="fade-in">
-      <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- Row 1: Academic Journey + Courses -->
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+
+        <!-- Academic Journey -->
         <div class="glass rounded-3xl p-6 sm:p-7 hover-card">
           <h2 class="text-2xl font-semibold text-slate-50 mb-4">Academic Journey</h2>
           <ul class="space-y-3 text-sm sm:text-base text-slate-200">
@@ -284,25 +276,46 @@
           </ul>
         </div>
 
-        <div class="flex flex-col gap-6">
-          <div class="glass rounded-3xl p-6 hover-card">
-            <h3 class="text-lg font-semibold text-slate-50 mb-2">Achievements</h3>
-            <p class="text-sm text-slate-300/90 italic">
-              Coming soon — this space will be updated as I participate in events, projects, and competitions.
-            </p>
-          </div>
+        <!-- Courses & Learning -->
+        <div class="glass rounded-3xl p-6 sm:p-7 hover-card">
+          <h3 class="text-xl font-semibold text-slate-50 mb-4">Courses & Learning</h3>
+          <ul class="list-disc list-inside text-sm text-slate-200 space-y-1">
+            <li>Python programming (multiple beginner to intermediate projects)</li>
+            <li>Introductory C programming & problem solving</li>
+            <li>Basics of HTML & CSS</li>
+            <li>Foundations of Computer Engineering subjects (in progress)</li>
+          </ul>
+        </div>
 
-          <div class="glass rounded-3xl p-6 hover-card">
-            <h3 class="text-lg font-semibold text-slate-50 mb-2">Courses & Learning</h3>
-            <ul class="list-disc list-inside text-sm text-slate-200 space-y-1">
-              <li>Python programming (multiple beginner to intermediate level projects)</li>
-              <li>Introductory C programming & problem solving</li>
-              <li>Basics of HTML & CSS</li>
-              <li>Foundations of Computer Engineering subjects (in progress)</li>
-            </ul>
-          </div>
+      </div>
+
+      <!-- Row 2: Achievements BELOW -->
+      <div class="glass rounded-3xl p-6 sm:p-7 hover-card">
+        <h3 class="text-2xl font-semibold text-slate-50 mb-4">Achievements</h3>
+
+        <p class="text-sm text-slate-300/90 mb-6">
+          Certificates earned from completing MathWorks training programs.
+        </p>
+
+        <!-- Certificate 1 -->
+        <div class="mb-10">
+          <h4 class="text-sm font-semibold text-violet-200 mb-2">Deep Learning Onramp Certificate</h4>
+          <img src="certificate1.jpg.jpg"
+               class="w-full max-w-lg mx-auto rounded-xl border border-slate-700 shadow-lg"
+               style="max-height: 330px; object-fit: contain;"
+               alt="Deep Learning Certificate">
+        </div>
+
+        <!-- Certificate 2 -->
+        <div>
+          <h4 class="text-sm font-semibold text-violet-200 mb-2">Machine Learning Onramp Certificate</h4>
+          <img src="certificate2.jpg.jpg"
+               class="w-full max-w-lg mx-auto rounded-xl border border-slate-700 shadow-lg"
+               style="max-height: 330px; object-fit: contain;"
+               alt="Machine Learning Certificate">
         </div>
       </div>
+
     </section>
 
     <!-- PROJECTS -->
@@ -333,7 +346,7 @@
       </div>
     </section>
 
-    <!-- GALLERY (placeholder) -->
+    <!-- GALLERY -->
     <section class="fade-in">
       <div class="glass rounded-3xl p-6 sm:p-8 hover-card">
         <h2 class="text-2xl sm:text-3xl font-semibold text-slate-50 mb-3">Gallery</h2>
@@ -429,10 +442,8 @@
 
   <!-- SCRIPTS -->
   <script>
-    // Helper
     const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
-    // THEME TOGGLE
     const html = document.documentElement;
     const themeToggle = document.getElementById('themeToggle');
     const sunIcon = document.getElementById('sunIcon');
@@ -452,7 +463,6 @@
       }
     }
 
-    // Initial theme (default dark)
     const saved = localStorage.getItem('nb-theme');
     if (saved === 'light') setTheme('light'); else setTheme('dark');
 
@@ -463,7 +473,6 @@
       localStorage.setItem('nb-theme', mode);
     });
 
-    // Mobile menu
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     if (menuBtn) {
@@ -472,7 +481,6 @@
       });
     }
 
-    // Fade-in on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -484,7 +492,6 @@
 
     $$('.fade-in').forEach(el => observer.observe(el));
 
-    // Contact form validation
     const contactForm = document.getElementById('contactForm');
     const nameField = document.getElementById('name');
     const emailField = document.getElementById('email');
@@ -524,8 +531,8 @@
       });
     }
 
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
